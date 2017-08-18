@@ -1,0 +1,9 @@
+body{
+background-color: #eee;
+font-family: Times New Roman;
+background-image:url("http://science.jrank.org/kids/article_images/weather_p19.jpg");
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+background-attachment:fixed;
+}
