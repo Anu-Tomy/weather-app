@@ -2,15 +2,19 @@
 $(document).ready(function(){
 	var lat;
 	var lon;
-	var api = 'https://ip-api.com/json';
-	$.getJSON(api, function(data2){
-		lat = data2.lat;
-		lon = data2.lon;
-	});
+	if (navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(position){
+		  lat = position.coords.latitude;
+		  lon = position.coords.longitude;
+		  console.log(lat);
+		  getloc(lat,lon);
+	    });
+	  }else {
+		console.log("Geolocation is not supported by this browser.");
+	}
 	//API URL with geolocation
-	/var api = 'https://api.openweathermap.org/data/2.5/weather?id=IDNo&appid=API KEY';
-	console.log(api);
-	$.getJSON(api, function(data){
+	function getloc(lat,lon){
+	$.getJSON('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=API KEY', function(data){
 	var fTemp;
 	var cTemp;
 	var kTemp;
@@ -40,6 +44,7 @@ $(document).ready(function(){
 	windSpeed=(2.237*(windSpeed)).toFixed(1);
 		$("#windSpeed").html(windSpeed + "mph");
 	
-});
+	});
+	 }
 	
 });
